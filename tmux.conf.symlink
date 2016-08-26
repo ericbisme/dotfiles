@@ -1,4 +1,4 @@
-source /usr/share/tmux/powerline.conf
+#source /usr/share/tmux/powerline.conf
 
 # Initial setup
 set -g default-terminal xterm-256color
@@ -82,7 +82,7 @@ set -g visual-activity on
 
 
 # Mouse Mode
-set -g mouse on
+#set -g mouse on
 
 # Theme
 set -g window-status-current-bg green
