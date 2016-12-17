@@ -93,6 +93,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vpn='sudo ~/.cu_net/vpn-connect.sh'
 alias psa='mosh dpsaadm01.dev.cu.edu -- tmux a -t eab0'
+alias rdp='~/.remmina/rdp'
 
 PATH="/home/bolinger/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/bolinger/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
