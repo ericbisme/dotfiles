@@ -6,7 +6,7 @@ set -g status-keys vi
 
 
 # Prefix
-set-option -g prefix C-a
+set-option -g prefix C-b
 unbind-key C-a
 bind-key C-a send-prefix
 set -g base-index 1
