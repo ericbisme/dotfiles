@@ -52,7 +52,7 @@ DEFAULT_USER="bolinger"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=$HOME/.dotfiles/zsh_custom
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -91,12 +91,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vpn='sudo ~/.cu_net/vpn-connect.sh'
-alias psa='mosh dpsaadm01.dev.cu.edu -- tmux a -t eab0'
-alias rdp='~/.remmina/rdp'
-
-PATH="/home/bolinger/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/bolinger/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/bolinger/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/bolinger/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/bolinger/perl5"; export PERL_MM_OPT;
