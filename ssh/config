@@ -1,0 +1,18 @@
+Host *
+    ForwardAgent yes
+    ServerAliveInterval 60
+
+Host *.cu.edu
+    IdentityFile ~/.ssh/cu
+
+Host *.github.com
+    IdentityFile ~/.ssh/github.key
+
+Host *.gitlab.com
+    IdentityFile ~/.ssh/gitlab.key
+
+Host *.bitbucket.com
+    IdentityFile ~/.ssh/bitbucket.key
+
+host *.ericbisme.net
+    IdentityFile ~/.ssh/ericbismenet
