@@ -7,5 +7,9 @@ settitle() {
 ssh() {
     settitle "$*"
     command ssh "$@"
-    settitle "zsh"
+    settitle `hostname -s`
+}
+
+ansible-sh() {
+    ansible $1 -m shell -a $2
 }
