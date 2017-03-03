@@ -1,4 +1,4 @@
-PATH="/home/bolinger/.dotfiles/bin:${PATH:+:${PATH}}"; export PATH;
+PATH="/home/bolinger/.dotfiles/bin:${PATH}}"; export PATH;
 
 
 #PATH="/home/bolinger/perl5/bin${PATH:+:${PATH}}"; export PATH;
