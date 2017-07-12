@@ -1,4 +1,5 @@
 PATH="/home/bolinger/.dotfiles/bin:${PATH}}"; export PATH;
+TNS_ADMIN="/tnsadmin"; export TNS_ADMIN;
 
 
 #PATH="/home/bolinger/perl5/bin${PATH:+:${PATH}}"; export PATH;
