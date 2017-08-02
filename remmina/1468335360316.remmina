@@ -39,3 +39,6 @@ viewmode=1
 postcommand=
 microphone=0
 disableautoreconnect=0
+resolution_height=1080
+resolution_width=1920
+scale=1
