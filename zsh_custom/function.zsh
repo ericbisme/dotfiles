@@ -1,7 +1,7 @@
 #!/bin/zsh
 ## Function to set window Title
 settitle() {
-    printf "\033k$1\033\\"
+    printf " $1 "
 }
 
 # Change tmux/screen title on ssh
