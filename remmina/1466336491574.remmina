@@ -41,3 +41,5 @@ microphone=0
 disableautoreconnect=0
 postcommand=
 keyboard_grab=0
+resolution_height=1080
+resolution_width=1920
