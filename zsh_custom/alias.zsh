@@ -1,5 +1,6 @@
 alias vpn='sudo openconnect --juniper --background --quiet --user=bolinger vpn.cusys.edu'
 alias psa='mosh dpsaadm01.dev.cu.edu -- tmux a -t eab0'
+alias thepit='mosh thepit.homelinux.net --ssh="ssh -p 2222" -- tmux a -t eab0'
 
 # Wake On Lan
 alias wol_esb='sudo ether-wake b8:ae:ed:e9:8c:a4'
