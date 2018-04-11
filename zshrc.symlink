@@ -1,4 +1,4 @@
-zstyle :omz:plugins:ssh-agent identities cu ericbismenet github gitlab bitbucket
+zstyle :omz:plugins:ssh-agent identities ericbismenet github gitlab bitbucket
 
 # Path to your oh-my-zsh installation.
   export ZSH=~/.oh-my-zsh
@@ -93,4 +93,4 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-zstyle :omz:plugins:ssh-agent identities cu gitlab github bitbucket ericbismenet
+zstyle :omz:plugins:ssh-agent identities gitlab github bitbucket ericbismenet
