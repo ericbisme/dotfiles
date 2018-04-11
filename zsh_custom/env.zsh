@@ -1,4 +1,4 @@
-PATH="/home/bolinger/.dotfiles/bin:/opt/puppetlabs/puppet/bin:${PATH} && export PATH;"
+PATH="/home/bolinger/.dotfiles/bin:${PATH}" && export PATH;
 TNS_ADMIN="/tnsadmin"; export TNS_ADMIN;
 
 
