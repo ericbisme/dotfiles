@@ -16,3 +16,9 @@ Host *.bitbucket.com
 
 host *.ericbisme.net
     IdentityFile ~/.ssh/ericbismenet
+
+host *.amazonaws.com
+    IdentityFile ~/.ssh/key1.pem
+
+host *.ericbisme.io
+    IdentityFile ~/.ssh/key1.pem
