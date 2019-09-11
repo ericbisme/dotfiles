@@ -1,5 +1,9 @@
 zstyle :omz:plugins:ssh-agent identities ericbismenet github gitlab bitbucket
 
+# https://kubernetes.io/docs/tasks/tools/install-kubectl/#optional-kubectl-configurations
+autoload -Uz compinit
+compinit
+
 # Path to your oh-my-zsh installation.
   export ZSH=~/.oh-my-zsh
 
@@ -60,7 +64,7 @@ ZSH_CUSTOM=$HOME/.dotfiles/zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode tmux ssh-agent)
+plugins=(vi-mode tmux ssh-agent kubectl)
 
 # User configuration
 
