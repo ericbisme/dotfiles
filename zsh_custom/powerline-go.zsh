@@ -1,5 +1,5 @@
 function powerline_precmd() {
-    PS1="$(~/go/bin/powerline-go -error $? -shell zsh -modules aws,kube,cwd,ssh,git)"
+    PS1="$(~/go/bin/powerline-go -error $? -shell zsh -modules aws,venv,kube,cwd,git)"
 }
 
 function install_powerline_precmd() {
