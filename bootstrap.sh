@@ -4,14 +4,14 @@ mkdir -p ~/.config/nvim/pack/minpac/opt
 
 #Oh-My-ZSH
 # sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(wget -q -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Powerline Go
-wget -O ~/go/bin/powerline-go https://github.com/justjanne/powerline-go/releases/download/v1.13.0/powerline-go-linux-amd64
+wget -q -O ~/go/bin/powerline-go https://github.com/justjanne/powerline-go/releases/download/v1.13.0/powerline-go-linux-amd64
 chmod +x ~/go/bin/powerline-go
 
 # Stern
-wget -O ~/go/bin/stern https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64
+wget -q -O ~/go/bin/stern https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64
 chmod +x ~/go/bin/stern
 
 # neovim
