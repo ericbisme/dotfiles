@@ -8,5 +8,8 @@ alias wol_wit='sudo ether-wake 34:e6:d7:47:6c:c0'
 alias wol_porter='sudo ether-wake 00:1f:c6:9b:98:36'
 
 # Kubernetes
-alias kc='kubectl'
-alias kcga='kubectl get all'
+#alias kc='kubectl'
+#alias kcga='kubectl get all'
+
+# vi to neovim
+alias vi=nvim
