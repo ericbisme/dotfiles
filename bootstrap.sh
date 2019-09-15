@@ -1,5 +1,5 @@
 # Make Required Directories
-mkdir -p ~/go/bin
+mkdir -p ${HOME}/.bin
 
 #Oh-My-ZSH
 if [ $(command -v zsh) ] ; then
@@ -31,14 +31,14 @@ if [ $(command -v nvim) ] ; then
   else
     cd "$MINPAC_DIR"
     git pull $MINPAC_GIT
-    /usr/bin/nvim --headless -c PackUpdateAndQuit
+    #/usr/bin/nvim --headless -c PackUpdateAndQuit
   fi
 fi
 
+# Utilities
 # Powerline Go
-wget -q -O ~/go/bin/powerline-go https://github.com/justjanne/powerline-go/releases/download/v1.13.0/powerline-go-linux-amd64
-chmod +x ~/go/bin/powerline-go
-
+wget -q -O ${HOME}/.bin/powerline-go https://github.com/justjanne/powerline-go/releases/download/v1.13.0/powerline-go-linux-amd64
 # Stern
-wget -q -O ~/go/bin/stern https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64
-chmod +x ~/go/bin/stern
+wget -q -O ${HOME}/.bin/stern https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64
+
+chmod +x ${HOME}/.bin/*

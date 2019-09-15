@@ -9,6 +9,15 @@ fi
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
+
+function _update_ps1() {
+  PS1="$($i{HOME}/.bin/powerline-go -error $? -shell bash -modules aws,venv,kube,cwd,git)"
+}
+
+if [ "$TERM" != "linux" ] && [ -f "${HOME/.bin/powerline-go" ]; then
+  PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
 set -o vi
 
 source <(kubectl completion bash)
