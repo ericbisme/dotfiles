@@ -9,7 +9,7 @@ fi
 
 # Symlink Simple Configs
 # all files and directories that that end in ".symlink" will be converted to symlinks in $HOME
-find ~/.dotfiles -name "*.symlink" -exec sh -c 'f="{}"; t="${f##*/}"; t="${t%.*}"; ln -s -f $f "$HOME/.$t"' \;
+find ~/.dotfiles -name "*.symlink" -exec sh -c 'f="{}"; t="${f##*/}"; t="${t%.*}"; ln -sTf $f "$HOME/.$t"' \;
 
 # Xterm Configs
 if [ $(command -v xterm) ] ; then
