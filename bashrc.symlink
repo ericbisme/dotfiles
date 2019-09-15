@@ -1,0 +1,20 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+set -o vi
+
+source <(kubectl completion bash)
+
+# Aliases
+alias k=kubectl
+alias kgp="k get pods"
+
+alias gcam='git commit -a -m'
