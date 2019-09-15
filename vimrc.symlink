@@ -7,7 +7,7 @@ set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
 set smarttab
-syntax on
+syntax enable
 filetype indent on
 set autoindent
 
@@ -17,4 +17,5 @@ set listchars+=trail:.            " show trailing spaces as dots
 set hlsearch 
 set incsearch
 
-colorscheme delek
+set background=dark
+colorscheme solarized
