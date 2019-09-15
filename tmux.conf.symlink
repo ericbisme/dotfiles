@@ -35,13 +35,16 @@ set-window-option -g automatic-rename on
 set-option -g set-titles on
 
 
+# Key bindings vi
+setw -g mode-keys vi
+set-option -g renumber-windows on
+
+
 # Key bindings for copy-paste
-#setw -g mode-keys vi
 #unbind p
 #bind p paste-buffer
 #bind-key -t vi-copy 'v' begin-selection
 #bind-key -t vi-copy 'y' copy-selection
-#set-option -g renumber-windows on
 
 
 # Window activity monitor
