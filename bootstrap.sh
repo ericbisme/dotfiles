@@ -36,9 +36,7 @@ if [ $(command -v nvim) ] ; then
 fi
 
 # Utilities
-# Powerline Go
-wget -q -O ${HOME}/.bin/powerline-go https://github.com/justjanne/powerline-go/releases/download/v1.13.0/powerline-go-linux-amd64
-# Stern
-wget -q -O ${HOME}/.bin/stern https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64
+VERSION="v1.13.0" wget -q -O ${HOME}/.bin/powerline-go https://github.com/justjanne/powerline-go/releases/download/${VERSION}/powerline-go-linux-amd64 # Powerline Go
+VERSION="1.11.0"  wget -q -O ${HOME}/.bin/stern https://github.com/wercker/stern/releases/download/${VERSION}/stern_linux_amd64 # Stern
 
 chmod +x ${HOME}/.bin/*
