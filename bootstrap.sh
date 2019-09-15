@@ -21,6 +21,6 @@ git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/
 
 # Symlink Simple Configs
 ln -s ~/.dotfiles/tmux.conf.symlink ~/.tmux.conf
-ln -s ~/.dotfiles/zshrc.symlink ~/.zshrc.symlink
-#ln -s ~/.dotfiles/vimrc.after.symlink ~/.vimrc.after
-#ln -s ~/.dotfiles/vimrc.symlink ~/.vimrc
+ln -s ~/.dotfiles/zshrc.symlink ~/.zshrc
+ln -s ~/.dotfiles/vimrc.symlink ~/.vimrc
+ln -s ~/.dotfiles/vim ~/.vim

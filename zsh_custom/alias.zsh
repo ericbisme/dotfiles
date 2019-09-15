@@ -12,4 +12,4 @@ alias wol_porter='sudo ether-wake 00:1f:c6:9b:98:36'
 #alias kcga='kubectl get all'
 
 # vi to neovim
-alias vi=nvim
+# alias vi=nvim
