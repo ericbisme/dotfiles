@@ -14,7 +14,7 @@ find ~/.dotfiles -name "*.symlink" -exec sh -c 'f="{}"; t="${f##*/}"; t="${t%.*}
 # Xterm Configs
 if [ $(command -v xterm) ] ; then
   echo "Merging .Xresources"
-  xrdb -merge ${HOME}.Xresources
+  xrdb -merge ${HOME}/.Xresources
 fi
 
 # neovim
@@ -36,7 +36,7 @@ if [ $(command -v nvim) ] ; then
 fi
 
 # Utilities
-VERSION="v1.13.0" wget -q -O ${HOME}/.bin/powerline-go https://github.com/justjanne/powerline-go/releases/download/${VERSION}/powerline-go-linux-amd64 # Powerline Go
-VERSION="1.11.0"  wget -q -O ${HOME}/.bin/stern https://github.com/wercker/stern/releases/download/${VERSION}/stern_linux_amd64 # Stern
+export VERSION="v1.13.0" && wget -q -O ${HOME}/.bin/powerline-go https://github.com/justjanne/powerline-go/releases/download/${VERSION}/powerline-go-linux-amd64 # Powerline Go
+export VERSION="1.11.0"  && wget -q -O ${HOME}/.bin/stern https://github.com/wercker/stern/releases/download/${VERSION}/stern_linux_amd64 # Stern
 
 chmod +x ${HOME}/.bin/*
