@@ -5,7 +5,7 @@ autoload -Uz compinit
 compinit
 
 # Path to your oh-my-zsh installation.
-  export ZSH=~/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -15,12 +15,12 @@ ZSH_THEME="robbyrussell"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # POWERLEVEL9k Config
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status rbenv)
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-DEFAULT_USER="bolinger"
+#POWERLEVEL9K_STATUS_VERBOSE=false
+#POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+#POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+#DEFAULT_USER=`whoami`
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
