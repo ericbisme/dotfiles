@@ -1,8 +1,12 @@
+!! xrdb -merge ~/.Xresources
+
 Xft.lcdfilter:  lcddefault
 
 xterm*faceName: Source Code Pro
 xterm*faceSize: 9
 xterm*renderFont: true
+
+XTerm*selectToClipboard: true
 
 !! drop in Solarized colorscheme for Xresources/Xdefaults
 
