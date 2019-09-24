@@ -21,6 +21,7 @@ fi
 set -o vi
 
 source <(kubectl completion bash)
+source <(kubectl completion bash | sed 's/kubectl/k/g')
 
 # Aliases
 alias k=kubectl
