@@ -2,7 +2,7 @@
 
 # Initial setup
 set -g default-terminal xterm-256color
-set-window-option -g term-keys on
+#set-window-option -g term-keys on
 set -g status-keys vi
 
 
@@ -37,12 +37,12 @@ set-option -g set-titles on
 
 
 # Key bindings for copy-paste
-setw -g mode-keys vi
-unbind p
-bind p paste-buffer
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
-set-option -g renumber-windows on
+#setw -g mode-keys vi
+#unbind p
+#bind p paste-buffer
+#bind-key -t vi-copy 'v' begin-selection
+#bind-key -t vi-copy 'y' copy-selection
+#set-option -g renumber-windows on
 
 
 # Window activity monitor
