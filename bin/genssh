@@ -6,11 +6,16 @@ gitlab
 github
 bitbucket
 ericbismenet
+rojoserve
 )
 
 for i in "${services[@]}"
 do
-  ssh-keygen -b 2048 -t rsa -f $HOME/.ssh/$i -q -P ""
+  if [ ! -f $HOME/.ssh/$i ]; then
+    ssh-keygen -b 2048 -t rsa -f $HOME/.ssh/$i -q -P ""
+  else
+    echo $HOME/.ssh/$i Already exists
+  fi
 done
 
 

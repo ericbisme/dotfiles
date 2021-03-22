@@ -42,3 +42,10 @@ rdp() {
 
   nohup remmina -c $CONFIG > /dev/null 2>&1 &
 }
+
+docker_lambda_env() {
+  echo AWS_REGION=$(aws configure --profile $1 get region)
+  echo AWS_ACCESS_KEY_ID=$(aws configure --profile $1 get aws_access_key_id)
+  echo AWS_SECRET_ACCESS_KEY=$(aws configure --profile $1 get aws_secret_access_key)
+  echo AWS_SESSION_TOKEN=$(aws configure --profile $1 get aws_session_token)
+}

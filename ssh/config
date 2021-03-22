@@ -22,3 +22,17 @@ host *.amazonaws.com
 
 host *.ericbisme.io
     IdentityFile ~/.ssh/key1.pem
+
+Host *.dev.lanyapps.com
+  IdentityFile ~/.ssh/dev-pum-instances.lanyapps.pem
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  User ec2-user
+  LogLevel QUIET
+
+Host cs92modo.rojoserve.com
+  IdentityFile ~/.ssh/rojoserve
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  User ebolinger
+  LogLevel QUIET

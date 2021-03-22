@@ -1,11 +1,13 @@
-" For a paranoia.
-" Normally `:set nocp` is not needed, because it is done automatically
-" when .vimrc is found.
+" Normally this if-block is not needed, because `:set nocp` is done
+" automatically when .vimrc is found. However, this might be useful
+" when you execute `vim -u .vimrc` from the command line.
 if &compatible
   " `:set nocp` has many side effects. Therefore this should be done
   " only when 'compatible' is set.
   set nocompatible
 endif
+
+packadd minpac
 
 if exists('*minpac#init')
   " minpac is loaded.
@@ -24,7 +26,8 @@ if exists('*minpac#init')
   call minpac#add('rodjek/vim-puppet')
 
   " Syntax highligting
-  call minpac#add('w0rp/ale')
+  " call minpac#add('w0rp/ale')
+  call minpac#add('dense-analysis/ale')
 
   " Make the status line pretty
   call minpac#add('vim-airline/vim-airline')
