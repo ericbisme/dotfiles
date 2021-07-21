@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 services=(
 cu
@@ -11,10 +11,10 @@ rojoserve
 
 for i in "${services[@]}"
 do
-  if [ ! -f $HOME/.ssh/$i ]; then
-    ssh-keygen -b 2048 -t rsa -f $HOME/.ssh/$i -q -P ""
+  if [ ! -f "${HOME}/.ssh/${i}" ]; then
+    ssh-keygen -b 2048 -t rsa -f "${HOME}/.ssh/${i}" -q -P ""
   else
-    echo $HOME/.ssh/$i Already exists
+    echo "${HOME}/.ssh/${i} Already exists"
   fi
 done
 
