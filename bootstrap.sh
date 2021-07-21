@@ -1,8 +1,8 @@
 # Make Required Directories
-mkdir -p ${HOME}/.bin
+mkdir -p "${HOME}/.bin"
 
 #Oh-My-ZSH
-if [ $(command -v zsh) ] ; then
+if [ "$(command -v zsh)" ] ; then
   # sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   [ ! -d ~/.oh-my-zsh ] && sh -c "$(wget -q -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
@@ -12,13 +12,13 @@ fi
 find ~/.dotfiles -name "*.symlink" -exec sh -c 'f="{}"; t="${f##*/}"; t="${t%.*}"; ln -sTf $f "$HOME/.$t"' \;
 
 # Xterm Configs
-if [ $(command -v xterm) ] ; then
+if [ "$(command -v xterm)" ] ; then
   echo "Merging .Xresources"
-  xrdb -merge ${HOME}/.Xresources
+  xrdb -merge "${HOME}/.Xresources"
 fi
 
 # neovim
-if [ $(command -v nvim) ] ; then
+if [ "$(command -v nvim)" ] ; then
   # .config directory
   [ ! -e ~/.config/nvim ] && mkdir -p ~/.config/nvim/pack/minpac/opt && ln -s ~/.dotfiles/config/nvim/init.vim ~/.config/nvim/init.vim
 
@@ -29,14 +29,14 @@ if [ $(command -v nvim) ] ; then
     git clone $MINPAC_GIT $MINPAC_DIR
     /usr/bin/nvim --headless -c PackUpdateAndQuit
   else
-    cd "$MINPAC_DIR"
+    cd "$MINPAC_DIR" || return
     git pull $MINPAC_GIT
     #/usr/bin/nvim --headless -c PackUpdateAndQuit
   fi
 fi
 
 # Utilities
-export VERSION="v1.13.0" && wget -q -O ${HOME}/.bin/powerline-go https://github.com/justjanne/powerline-go/releases/download/${VERSION}/powerline-go-linux-amd64 # Powerline Go
-export VERSION="1.11.0"  && wget -q -O ${HOME}/.bin/stern https://github.com/wercker/stern/releases/download/${VERSION}/stern_linux_amd64 # Stern
+export VERSION="v1.13.0" && wget -q -O "${HOME}/.bin/powerline-go https://github.com/justjanne/powerline-go/releases/download/${VERSION}/powerline-go-linux-amd64" # Powerline Go
+export VERSION="1.11.0"  && wget -q -O "${HOME}/.bin/stern https://github.com/wercker/stern/releases/download/${VERSION}/stern_linux_amd64" # Stern
 
-chmod +x ${HOME}/.bin/*
+chmod +x "${HOME}/.bin/*"
