@@ -1,0 +1,8 @@
+Host *.github.com
+    IdentityFile ~/.ssh/github.key
+
+Host *.gitlab.com
+    IdentityFile ~/.ssh/gitlab.key
+
+Host *.bitbucket.com
+    IdentityFile ~/.ssh/bitbucket.key

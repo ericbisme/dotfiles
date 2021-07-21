@@ -1,0 +1,6 @@
+Host *.dev.lanyapps.com
+  IdentityFile ~/.ssh/dev-pum-instances.lanyapps.pem
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  User ec2-user
+  LogLevel QUIET
