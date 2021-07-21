@@ -1,5 +1,5 @@
 function powerline_precmd() {
-    PS1="$(/usr/bin/powerline-go -error $? -shell zsh -modules aws,venv,kube,cwd,git -cwd-max-depth 2)"
+    PS1="$(powerline-go -error $? -shell zsh -modules aws,venv,kube,cwd,git -cwd-max-depth 2)"
 }
 
 function install_powerline_precmd() {

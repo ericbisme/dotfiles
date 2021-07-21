@@ -1,6 +1,6 @@
-alias vpn='sudo openconnect --juniper --background --quiet --user=bolinger vpn.cusys.edu'
-alias psa='mosh dpsaadm01.dev.cu.edu -- tmux a -t eab0'
-alias thepit='mosh thepit.homelinux.net --ssh="ssh -p 2222" -- tmux a -t eab0'
+# Remote Connectivity
+alias ptr='mosh porter.ericbisme.net -- tmux a -t eab0'
+alias thepit='mosh thepit.homelinux.net -- tmux a -t eab0'
 
 # Wake On Lan
 alias wol_esb='sudo ether-wake b8:ae:ed:e9:8c:a4'
@@ -11,9 +11,7 @@ alias wol_coreos='sudo ether-wake 00:30:48:94:c6:32'
 # Kubernetes
 #alias kc='kubectl'
 #alias kcga='kubectl get all'
-
-# vi to neovim
-# alias vi=nvim
+#alias kgn='kubectl'
 
 alias vi=nvim
 alias tg=terragrunt
