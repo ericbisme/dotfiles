@@ -1,0 +1,116 @@
+# rojoserve Lambda function repos - the deployed modo-ps-cs-* functions plus the
+# authorizer. Inherits the npm commands from 70-rojoserve-npm.
+#
+# Loaded last, so the mojo-lambda-admin release workflow below applies only to
+# these repos.
+
+[DEFAULT]
+
+# Which version of the admin library is this function pinned to?
+rojoadmin = npm ls @rojoserve-private-npm/mojo-lambda-admin
+
+# Bump to the latest admin library without releasing.
+adminlatest =
+	npm install @rojoserve-private-npm/mojo-lambda-admin@latest
+	npm clean-install
+
+# Bump the admin library, patch-version, commit, push and cut a GitHub release.
+#
+# The two pre-flight checks are not optional: this stages with `git add -A`, so
+# without them an unrelated dirty file would be swept into the release commit, or
+# the release would be cut from a feature branch.
+adminrelease =
+	git diff --quiet && git diff --cached --quiet ||
+		error "$MR_REPO: working tree is dirty; commit or stash before releasing"
+	b=$(default_branch)
+	cur=$(git rev-parse --abbrev-ref HEAD)
+	test "$cur" = "$b" || error "$MR_REPO: releases are cut from $b, not $cur"
+	npm install @rojoserve-private-npm/mojo-lambda-admin@latest
+	npm --no-git-tag-version version patch
+	npm install
+	git add -A
+	git commit -m 'chore: update mojo-lambda-admin to latest'
+	git push
+	gh release create "v$(jq -r .version package.json)" --generate-notes
+
+[projects/github/rojoserve/lambda-authorizer-modo]
+checkout = git clone 'git@github.com:rojoserve/lambda-authorizer-modo.git' 'lambda-authorizer-modo'
+
+[projects/github/rojoserve/modo-ps-cs-add-class]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-add-class.git' 'modo-ps-cs-add-class'
+
+[projects/github/rojoserve/modo-ps-cs-catalog-cache]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-catalog-cache.git' 'modo-ps-cs-catalog-cache'
+
+[projects/github/rojoserve/modo-ps-cs-checklists]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-checklists.git' 'modo-ps-cs-checklists'
+
+[projects/github/rojoserve/modo-ps-cs-class-search]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-class-search.git' 'modo-ps-cs-class-search'
+
+[projects/github/rojoserve/modo-ps-cs-constituent]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-constituent.git' 'modo-ps-cs-constituent'
+
+[projects/github/rojoserve/modo-ps-cs-course-catalog]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-course-catalog.git' 'modo-ps-cs-course-catalog'
+
+[projects/github/rojoserve/modo-ps-cs-enroll-appoint]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-enroll-appoint.git' 'modo-ps-cs-enroll-appoint'
+
+[projects/github/rojoserve/modo-ps-cs-fin-aid]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-fin-aid.git' 'modo-ps-cs-fin-aid'
+
+[projects/github/rojoserve/modo-ps-cs-fin-aid-accept-decline]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-fin-aid-accept-decline.git' 'modo-ps-cs-fin-aid-accept-decline'
+
+[projects/github/rojoserve/modo-ps-cs-grades]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-grades.git' 'modo-ps-cs-grades'
+
+[projects/github/rojoserve/modo-ps-cs-make-payment]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-make-payment.git' 'modo-ps-cs-make-payment'
+
+[projects/github/rojoserve/modo-ps-cs-my-classes]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-my-classes.git' 'modo-ps-cs-my-classes'
+
+[projects/github/rojoserve/modo-ps-cs-my-classes-detail]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-my-classes-detail.git' 'modo-ps-cs-my-classes-detail'
+
+[projects/github/rojoserve/modo-ps-cs-my-classes-summary]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-my-classes-summary.git' 'modo-ps-cs-my-classes-summary'
+
+[projects/github/rojoserve/modo-ps-cs-my-finances]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-my-finances.git' 'modo-ps-cs-my-finances'
+
+[projects/github/rojoserve/modo-ps-cs-select-from-planner]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-select-from-planner.git' 'modo-ps-cs-select-from-planner'
+
+[projects/github/rojoserve/modo-ps-cs-service-indicators]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-service-indicators.git' 'modo-ps-cs-service-indicators'
+
+[projects/github/rojoserve/modo-ps-cs-shopping-cart]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-shopping-cart.git' 'modo-ps-cs-shopping-cart'
+
+[projects/github/rojoserve/modo-ps-cs-student-account]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-student-account.git' 'modo-ps-cs-student-account'
+
+[projects/github/rojoserve/modo-ps-cs-student-home]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-student-home.git' 'modo-ps-cs-student-home'
+
+[projects/github/rojoserve/modo-ps-cs-student-records]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-student-records.git' 'modo-ps-cs-student-records'
+
+[projects/github/rojoserve/modo-ps-cs-teacher-classes]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-teacher-classes.git' 'modo-ps-cs-teacher-classes'
+
+[projects/github/rojoserve/modo-ps-cs-teacher-home]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-teacher-home.git' 'modo-ps-cs-teacher-home'
+
+[projects/github/rojoserve/modo-ps-cs-teacher-records]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-teacher-records.git' 'modo-ps-cs-teacher-records'
+
+[projects/github/rojoserve/modo-ps-cs-teacher-schedule]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-teacher-schedule.git' 'modo-ps-cs-teacher-schedule'
+
+[projects/github/rojoserve/modo-ps-cs-weekly-schedule]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-weekly-schedule.git' 'modo-ps-cs-weekly-schedule'
+

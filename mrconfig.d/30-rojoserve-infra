@@ -1,0 +1,40 @@
+# rojoserve Terraform / IaC / provisioning repos.
+#
+# Deliberately loaded BEFORE the npm defaults in 70, so `mr npmci` and friends
+# stay no-ops here.
+
+[projects/github/rojoserve/aws-image-provisioning]
+checkout = git clone 'git@github.com:rojoserve/aws-image-provisioning.git' 'aws-image-provisioning'
+
+[projects/github/rojoserve/cs-ps-modo]
+checkout = git clone 'git@github.com:rojoserve/cs-ps-modo.git' 'cs-ps-modo'
+
+[projects/github/rojoserve/gitops]
+# No 'origin' remote configured on disk, so there is nothing to clone from.
+# Always skipped; drop this once the repo has a remote (or delete the clone).
+skip = true
+
+[projects/github/rojoserve/infrastructure-modules]
+checkout = git clone 'git@github.com:rojoserve/infrastructure-modules.git' 'infrastructure-modules'
+
+[projects/github/rojoserve/modo-infrastructure-modules]
+checkout = git clone 'git@github.com:rojoserve/modo-infrastructure-modules.git' 'modo-infrastructure-modules'
+
+[projects/github/rojoserve/rojoserve-infrastructure-live]
+checkout = git clone 'git@github.com:rojoserve/rojoserve-infrastructure-live.git' 'rojoserve-infrastructure-live'
+
+[projects/github/rojoserve/terraform-aws-psdev-instance]
+checkout = git clone 'git@github.com:rojoserve/terraform-aws-psdev-instance.git' 'terraform-aws-psdev-instance'
+
+[projects/github/rojoserve/terraform-aws-pum-instance]
+checkout = git clone 'git@github.com:rojoserve/terraform-aws-pum-instance.git' 'terraform-aws-pum-instance'
+
+[projects/github/rojoserve/terraform-github-repository]
+checkout = git clone 'git@github.com:rojoserve/terraform-github-repository.git' 'terraform-github-repository'
+
+[projects/github/rojoserve/terraform-github-team]
+checkout = git clone 'git@github.com:rojoserve/terraform-github-team.git' 'terraform-github-team'
+
+[projects/github/rojoserve/workstation-setup]
+checkout = git clone 'git@github.com:rojoserve/workstation-setup.git' 'workstation-setup'
+

@@ -1,0 +1,58 @@
+# Shared defaults for every registered repo.
+#
+# LOAD ORDER MATTERS. These files are concatenated into ~/.mrconfig by its
+# `include` line, in glob (numeric) order, and mr applies a [DEFAULT] block
+# only to the sections that come AFTER it. That is why the files are numbered:
+#
+#   00-defaults          global settings + stubs for the specialised commands
+#   10-personal          dotfiles and third-party clones
+#   20-modolabs          modolabs org
+#   30-rojoserve-infra   Terraform / IaC / provisioning
+#   70-rojoserve-npm     shared npm libraries, services and tools
+#   90-rojoserve-lambda  deployed Lambda function repos
+#
+# Anything npm- or release-specific therefore lives in 70 and 90, and is a
+# harmless no-op everywhere above them.
+
+[DEFAULT]
+
+# Deliberately NO `jobs` setting here.
+#
+# Setting `jobs` in the config applies it to every action, including
+# interactive ones, and mr suppresses the per-repo header whenever jobs > 1
+# (see the `unless !$jobs || $jobs > 1` guard around the actionmsg print).
+# That turns `mr list` into a column of blank lines. Parallelism is a
+# per-invocation concern: use `mr -j5 update`, or the `mra` shell helper.
+
+# NB: a blank line ends a multi-line value, so the block below has none.
+lib =
+	# `error` and `lazy` come from mr's own built-in library
+	# (see: mr config DEFAULT lib).
+	# True when this repo is an npm package.
+	is_npm() { test -f package.json; }
+	# Report that a command does not apply here, without failing the run.
+	na() { echo "  n/a: $*"; exit 0; }
+	# Remote default branch (main, develop, master, ...).
+	default_branch() {
+		b=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD) ||
+			error "$MR_REPO: cannot resolve origin/HEAD; run 'git remote set-head origin -a'"
+		echo "${b#origin/}"
+	}
+
+# Switch to the repo's default branch. Resolved per repo, so this also does the
+# right thing in the modolabs repos, where the default is develop or master.
+main =
+	b=$(default_branch)
+	git checkout "$b"
+
+# Current branch, one line per repo. Most useful as: mr -m branch
+branch = git rev-parse --abbrev-ref HEAD
+
+# Real implementations live in 70-rojoserve-npm and 90-rojoserve-lambda.
+# Defined here so these actions are a clean no-op in every other repo rather
+# than an "unknown action" failure.
+npmci        = na "npmci (not an npm repo)"
+audit        = na "audit (not an npm repo)"
+rojoadmin    = na "rojoadmin (does not use mojo-lambda-admin)"
+adminlatest  = na "adminlatest (does not use mojo-lambda-admin)"
+adminrelease = na "adminrelease (not a Lambda function repo)"

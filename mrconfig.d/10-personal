@@ -1,0 +1,29 @@
+# Personal dotfiles and third-party clones.
+#
+# Everything except dotfiles is `skip = lazy`: registered so it can be cloned on
+# a new machine with `mr -f -d <dir> checkout`, but ignored by a plain
+# `mr update` so the daily sweep stays fast.
+
+[projects/github/Gideon-Taylor/AppRefiner]
+checkout = git clone 'git@github.com:Gideon-Taylor/AppRefiner.git' 'AppRefiner'
+skip = lazy
+
+[projects/github/bolkedebruin/rdpgw]
+checkout = git clone 'https://github.com/bolkedebruin/rdpgw.git' 'rdpgw'
+skip = lazy
+
+[projects/github/cache117/peoplesoft-psunit]
+checkout = git clone 'git@github.com:cache117/peoplesoft-psunit.git' 'peoplesoft-psunit'
+skip = lazy
+
+[projects/github/ericbisme/dotfiles]
+checkout = git clone 'git@github.com:ericbisme/dotfiles.git' 'dotfiles'
+
+[projects/github/naugtur/node-example-flamegraph]
+checkout = git clone 'https://github.com/naugtur/node-example-flamegraph.git' 'node-example-flamegraph'
+skip = lazy
+
+[projects/github/rundeck/welcome-project-community]
+checkout = git clone 'https://github.com/rundeck/welcome-project-community.git' 'welcome-project-community'
+skip = lazy
+

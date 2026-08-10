@@ -1,0 +1,79 @@
+# rojoserve shared npm libraries, supporting services and local tools.
+#
+# The npm commands below are defined here rather than globally, so they apply to
+# this file and to 90-rojoserve-lambda, but not to the Terraform repos above.
+
+[DEFAULT]
+
+# Refresh the lockfile, then prove a clean install works from it.
+npmci =
+	is_npm || na "npmci (no package.json)"
+	npm install
+	rm -rf node_modules
+	npm ci
+
+# Extra args are forwarded, e.g. mr audit --json
+audit =
+	is_npm || na "audit (no package.json)"
+	npm run audit -- "$@"
+
+[projects/github/rojoserve/apig-local]
+checkout = git clone 'git@github.com:rojoserve/apig-local.git' 'apig-local'
+
+[projects/github/rojoserve/customer-verification]
+checkout = git clone 'git@github.com:rojoserve/customer-verification.git' 'customer-verification'
+
+[projects/github/rojoserve/customer-verification-banner]
+checkout = git clone 'git@github.com:rojoserve/customer-verification-banner.git' 'customer-verification-banner'
+
+[projects/github/rojoserve/eab-nexus-sandbox]
+checkout = git clone 'git@github.com:rojoserve/eab-nexus-sandbox.git' 'eab-nexus-sandbox'
+
+[projects/github/rojoserve/hello-rojo]
+checkout = git clone 'git@github.com:rojoserve/hello-rojo.git' 'hello-rojo'
+
+[projects/github/rojoserve/json-object-example]
+checkout = git clone 'git@github.com:rojoserve/json-object-example.git' 'json-object-example'
+
+[projects/github/rojoserve/modo-clean-string]
+checkout = git clone 'git@github.com:rojoserve/modo-clean-string.git' 'modo-clean-string'
+
+[projects/github/rojoserve/modo-customer-options]
+checkout = git clone 'git@github.com:rojoserve/modo-customer-options.git' 'modo-customer-options'
+
+[projects/github/rojoserve/modo-error-handler]
+checkout = git clone 'git@github.com:rojoserve/modo-error-handler.git' 'modo-error-handler'
+
+[projects/github/rojoserve/modo-popup-message]
+checkout = git clone 'git@github.com:rojoserve/modo-popup-message.git' 'modo-popup-message'
+
+[projects/github/rojoserve/modo-ps-campus-design]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-campus-design.git' 'modo-ps-campus-design'
+
+[projects/github/rojoserve/modo-ps-cs-options]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-options.git' 'modo-ps-cs-options'
+
+[projects/github/rojoserve/modo-ps-cs-product-config]
+checkout = git clone 'git@github.com:rojoserve/modo-ps-cs-product-config.git' 'modo-ps-cs-product-config'
+
+[projects/github/rojoserve/mojo-lambda-admin]
+checkout = git clone 'git@github.com:rojoserve/mojo-lambda-admin.git' 'mojo-lambda-admin'
+
+[projects/github/rojoserve/sis-actions]
+checkout = git clone 'git@github.com:rojoserve/sis-actions.git' 'sis-actions'
+
+[projects/github/rojoserve/sis-cacherizer]
+checkout = git clone 'git@github.com:rojoserve/sis-cacherizer.git' 'sis-cacherizer'
+
+[projects/github/rojoserve/sis-configurizer]
+checkout = git clone 'git@github.com:rojoserve/sis-configurizer.git' 'sis-configurizer'
+
+[projects/github/rojoserve/sis-personalization-options]
+checkout = git clone 'git@github.com:rojoserve/sis-personalization-options.git' 'sis-personalization-options'
+
+[projects/github/rojoserve/sis-token-vendor]
+checkout = git clone 'git@github.com:rojoserve/sis-token-vendor.git' 'sis-token-vendor'
+
+[projects/github/rojoserve/xcampus-rendered-json]
+checkout = git clone 'git@github.com:rojoserve/xcampus-rendered-json.git' 'xcampus-rendered-json'
+

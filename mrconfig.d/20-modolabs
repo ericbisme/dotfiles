@@ -1,0 +1,126 @@
+# modolabs org. All `skip = lazy` - cloned on demand, not part of the
+# day-to-day SIS Lambda work.
+#
+# Several of these default to `develop` or `master` rather than `main`; the
+# `main` command in 00-defaults resolves origin/HEAD per repo, so it works here.
+
+[projects/github/modolabs/Kurogo-Core]
+checkout = git clone 'git@github.com:modolabs/Kurogo-Core.git' 'Kurogo-Core'
+skip = lazy
+
+[projects/github/modolabs/UI-Mockups-XCampus]
+checkout = git clone 'https://github.com/modolabs/UI-Mockups-XCampus.git' 'UI-Mockups-XCampus'
+skip = lazy
+
+[projects/github/modolabs/app-manager]
+checkout = git clone 'git@github.com:modolabs/app-manager.git' 'app-manager'
+skip = lazy
+
+[projects/github/modolabs/beakman]
+checkout = git clone 'git@github.com:modolabs/beakman.git' 'beakman'
+skip = lazy
+
+[projects/github/modolabs/brownie]
+checkout = git clone 'git@github.com:modolabs/brownie.git' 'brownie'
+skip = lazy
+
+[projects/github/modolabs/charlotte]
+checkout = git clone 'git@github.com:modolabs/charlotte.git' 'charlotte'
+skip = lazy
+
+[projects/github/modolabs/hydra-bootstrap]
+checkout = git clone 'git@github.com:modolabs/hydra-bootstrap.git' 'hydra-bootstrap'
+skip = lazy
+
+[projects/github/modolabs/hydra-k8s]
+checkout = git clone 'git@github.com:modolabs/hydra-k8s.git' 'hydra-k8s'
+skip = lazy
+
+[projects/github/modolabs/kabuki]
+checkout = git clone 'git@github.com:modolabs/kabuki.git' 'kabuki'
+skip = lazy
+
+[projects/github/modolabs/kurogo-k8s]
+checkout = git clone 'git@github.com:modolabs/kurogo-k8s.git' 'kurogo-k8s'
+skip = lazy
+
+[projects/github/modolabs/misc-cfn-templates]
+checkout = git clone 'git@github.com:modolabs/misc-cfn-templates.git' 'misc-cfn-templates'
+skip = lazy
+
+[projects/github/modolabs/modo-helm-charts]
+checkout = git clone 'git@github.com:modolabs/modo-helm-charts.git' 'modo-helm-charts'
+skip = lazy
+
+[projects/github/modolabs/modo-infrastructure-live]
+checkout = git clone 'git@github.com:modolabs/modo-infrastructure-live.git' 'modo-infrastructure-live'
+skip = lazy
+
+[projects/github/modolabs/modo-infrastructure-modules]
+checkout = git clone 'git@github.com:modolabs/modo-infrastructure-modules.git' 'modo-infrastructure-modules'
+skip = lazy
+
+[projects/github/modolabs/modo_admin_screen_builder_templates]
+checkout = git clone 'git@github.com:modolabs/modo_admin_screen_builder_templates.git' 'modo_admin_screen_builder_templates'
+skip = lazy
+
+[projects/github/modolabs/modoui]
+checkout = git clone 'git@github.com:modolabs/modoui.git' 'modoui'
+skip = lazy
+
+[projects/github/modolabs/nexus-local]
+checkout = git clone 'git@github.com:modolabs/nexus-local.git' 'nexus-local'
+skip = lazy
+
+[projects/github/modolabs/nexus-verifyjwt]
+checkout = git clone 'git@github.com:modolabs/nexus-verifyjwt.git' 'nexus-verifyjwt'
+skip = lazy
+
+[projects/github/modolabs/nexus-xservice-bellhop]
+checkout = git clone 'git@github.com:modolabs/nexus-xservice-bellhop.git' 'nexus-xservice-bellhop'
+skip = lazy
+
+[projects/github/modolabs/nexus-xservice-blackboard-m4]
+checkout = git clone 'git@github.com:modolabs/nexus-xservice-blackboard-m4.git' 'nexus-xservice-blackboard-m4'
+skip = lazy
+
+[projects/github/modolabs/nexus-xservice-canvas]
+checkout = git clone 'git@github.com:modolabs/nexus-xservice-canvas.git' 'nexus-xservice-canvas'
+skip = lazy
+
+[projects/github/modolabs/nexus-xservice-canvas-m4]
+checkout = git clone 'git@github.com:modolabs/nexus-xservice-canvas-m4.git' 'nexus-xservice-canvas-m4'
+skip = lazy
+
+[projects/github/modolabs/nexus-xservice-desire2learn]
+checkout = git clone 'git@github.com:modolabs/nexus-xservice-desire2learn.git' 'nexus-xservice-desire2learn'
+skip = lazy
+
+[projects/github/modolabs/nexus-xservice-space-reservations]
+checkout = git clone 'git@github.com:modolabs/nexus-xservice-space-reservations.git' 'nexus-xservice-space-reservations'
+skip = lazy
+
+[projects/github/modolabs/nexus-xservice-touchnet-oneweb]
+checkout = git clone 'git@github.com:modolabs/nexus-xservice-touchnet-oneweb.git' 'nexus-xservice-touchnet-oneweb'
+skip = lazy
+
+[projects/github/modolabs/polaris]
+checkout = git clone 'git@github.com:modolabs/polaris.git' 'polaris'
+skip = lazy
+
+[projects/github/modolabs/porter]
+checkout = git clone 'git@github.com:modolabs/porter.git' 'porter'
+skip = lazy
+
+[projects/github/modolabs/puppet]
+checkout = git clone 'git@github.com:modolabs/puppet.git' 'puppet'
+skip = lazy
+
+[projects/github/modolabs/xservice-checklist]
+checkout = git clone 'git@github.com:modolabs/xservice-checklist.git' 'xservice-checklist'
+skip = lazy
+
+[projects/github/modolabs/xservice-configs]
+checkout = git clone 'git@github.com:modolabs/xservice-configs.git' 'xservice-configs'
+skip = lazy
+
