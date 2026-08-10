@@ -1,3 +1,5 @@
 .swp
 vim.symlink/.netrwhist
 zsh_custom/completions/
+*.BAK
+*.DISABLED
