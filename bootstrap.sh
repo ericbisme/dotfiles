@@ -18,21 +18,12 @@ if [ "$(command -v xterm)" ] ; then
 fi
 
 # neovim
+# Symlink the whole config/nvim directory, so init.lua and lua/ come with it.
+# lazy.nvim bootstraps itself on first launch (see lua/config/lazy.lua) and
+# installs the plugin revisions pinned in lazy-lock.json, so there is no plugin
+# manager to clone here.
 if [ "$(command -v nvim)" ] ; then
-  # .config directory
-  [ ! -e ~/.config/nvim ] && mkdir -p ~/.config/nvim/pack/minpac/opt && ln -s ~/.dotfiles/config/nvim/init.vim ~/.config/nvim/init.vim
-
-  # minpac plugins manager
-  MINPAC_DIR=~/.config/nvim/pack/minpac/opt/minpac
-  MINPAC_GIT=https://github.com/k-takata/minpac.git
-  if [ ! -d "$MINPAC_DIR" ] ; then
-    git clone $MINPAC_GIT $MINPAC_DIR
-    /usr/bin/nvim --headless -c PackUpdateAndQuit
-  else
-    cd "$MINPAC_DIR" || return
-    git pull $MINPAC_GIT
-    #/usr/bin/nvim --headless -c PackUpdateAndQuit
-  fi
+  [ ! -e ~/.config/nvim ] && ln -s ~/.dotfiles/config/nvim ~/.config/nvim
 fi
 
 # Utilities
