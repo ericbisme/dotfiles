@@ -1,7 +1,7 @@
 #source /usr/share/tmux/powerline.conf
 
 # Initial setup
-set -g default-terminal xterm-256color
+set -g default-terminal tmux-256color
 #set-window-option -g term-keys on
 set -g status-keys vi
 
@@ -30,6 +30,9 @@ set-option -g display-panes-time 3000
 set -g base-index 1
 set-window-option -g pane-base-index 1
 
+# Move Windows
+bind-key -n C-S-Left swap-window -t -1\; select-window -t -1
+bind-key -n C-S-Right swap-window -t +1\; select-window -t +1
 
 # Automatically set window title
 set-window-option -g automatic-rename on
@@ -84,6 +87,7 @@ set -g visual-activity on
 
 # Mouse Mode
 #set -g mouse on
+setw -g mouse on
 
 
 # This tmux statusbar config was created by tmuxline.vim
@@ -107,3 +111,20 @@ set -g status-left "#[fg=colour15,bg=colour14,bold] #S #[fg=colour14,bg=colour0,
 set -g status-right "#[fg=colour11,bg=colour0,nobold,nounderscore,noitalics]#[fg=colour7,bg=colour11] %Y-%m-%d  %H:%M #[fg=colour14,bg=colour11,nobold,nounderscore,noitalics]#[fg=colour15,bg=colour14] #h "
 setw -g window-status-format "#[fg=colour10,bg=colour0] #I #[fg=colour10,bg=colour0] #W "
 setw -g window-status-current-format "#[fg=colour0,bg=colour11,nobold,nounderscore,noitalics]#[fg=colour7,bg=colour11] #I #[fg=colour7,bg=colour11] #W #[fg=colour11,bg=colour0,nobold,nounderscore,noitalics]"
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+set -g @yank_action 'copy-pipe-no-clear'
+bind -T copy-mode    C-c send -X copy-pipe-no-clear "xsel -i --clipboard"
+bind -T copy-mode-vi C-c send -X copy-pipe-no-clear "xsel -i --clipboard"
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'github_username/plugin_name#branch'
+# set -g @plugin 'git@github.com:user/plugin'
+# set -g @plugin 'git@bitbucket.com:user/plugin'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
