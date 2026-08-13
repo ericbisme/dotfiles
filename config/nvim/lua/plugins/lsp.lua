@@ -1,10 +1,25 @@
 return {
+  -- Injects the Neovim runtime into lua_ls, so vim.* completes for real.
+  -- Successor to neodev.nvim, which is archived and does not hook the native
+  -- vim.lsp.config() path used below.
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
   {
     'neovim/nvim-lspconfig',
+    -- BufReadPre fires before FileType, so servers still attach to the first
+    -- file opened. cmd keeps :Mason and :LspInfo usable with no file loaded.
+    event = { 'BufReadPre', 'BufNewFile' },
+    cmd = { 'Mason', 'LspInfo' },
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'folke/neodev.nvim',
     },
     config = function()
       require('mason').setup()
@@ -42,8 +57,7 @@ return {
         },
       })
 
-      -- Lua
-      require('neodev').setup({})
+      -- Lua (runtime library comes from lazydev.nvim above)
       vim.lsp.config('lua_ls', {
         settings = {
           Lua = {

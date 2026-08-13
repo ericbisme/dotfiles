@@ -39,7 +39,8 @@ return {
         end,
       },
     },
-    lazy = false,
+    cmd = 'Neotree',
+    keys = { { '<leader>e', '<Cmd>Neotree reveal<CR>', desc = 'NeoTree reveal' } },
     config = function()
       -- If you want icons for diagnostic errors, you'll need to define them somewhere.
       -- In Neovim v0.10+, you can configure them in vim.diagnostic.config(), like:
@@ -60,8 +61,6 @@ return {
       -- vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
       -- vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
       -- vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
-
-      vim.keymap.set("n", "<leader>e", "<Cmd>Neotree reveal<CR>")
 
       require("neo-tree").setup({
         close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
@@ -401,11 +400,16 @@ return {
       })
     end,
     init = function()
-        vim.api.nvim_create_autocmd('VimEnter', {
-            callback = function()
-                vim.cmd('Neotree show')
-            end,
-        })
+      -- Auto-open the tree, but off the startup path. Without the schedule()
+      -- this autocmd loads neo-tree during startup and the cmd/keys triggers
+      -- above save nothing; with it, the editor paints and becomes interactive
+      -- first and the tree appears on the next event-loop tick.
+      vim.api.nvim_create_autocmd('VimEnter', {
+        once = true,
+        callback = function()
+          vim.schedule(function() vim.cmd('Neotree show') end)
+        end,
+      })
     end
   },
 }

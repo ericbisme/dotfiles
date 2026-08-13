@@ -7,7 +7,7 @@ return {
       theme = 'solarized_dark',      -- or 'auto', 'tokyonight', etc.
       section_separators = { left = '', right = '' },
       component_separators = { left = '', right = '' },
-      disabled_filetypes = { 'NvimTree', 'dashboard' },
+      disabled_filetypes = { 'neo-tree' },
       globalstatus = true,
     },
     sections = {
@@ -26,6 +26,6 @@ return {
       lualine_y = {},
       lualine_z = {}
     },
-    extensions = { 'nvim-tree', 'quickfix' }
+    extensions = { 'neo-tree', 'quickfix' }
   }
 }

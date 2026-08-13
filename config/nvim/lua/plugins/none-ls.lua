@@ -4,9 +4,6 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
 
-    -- provides require("none-ls.diagnostics.eslint") / eslint_d, etc.
-    "nvimtools/none-ls-extras.nvim",
-
     -- provides shellcheck sources again (diagnostics + code_actions)
     "gbprod/none-ls-shellcheck.nvim",
   },
@@ -16,31 +13,13 @@ return {
 
     local sources = {}
 
-    -- --------
-    -- ESLint (from none-ls-extras, not core builtins)
-    -- --------
     local function req(mod)
       local ok, m = pcall(require, mod)
       return ok and m or nil
     end
 
-    --    local eslint_diag = vim.fn.executable("eslint_d") == 1
-    --        and req("none-ls.diagnostics.eslint_d")
-    --      or req("none-ls.diagnostics.eslint")
-    --
-    --    local eslint_actions = vim.fn.executable("eslint_d") == 1
-    --        and req("none-ls.code_actions.eslint_d")
-    --      or req("none-ls.code_actions.eslint")
-    --
-    --    if eslint_diag then
-    --      table.insert(sources, eslint_diag.with({
-    --        diagnostics_format = "[#{c}] #{m}",
-    --      }))
-    --    end
-    --
-    --    if eslint_actions then
-    --      table.insert(sources, eslint_actions)
-    --    end
+    -- ESLint diagnostics and code actions come from the eslint language server
+    -- (see lsp.lua), not from none-ls, so none-ls-extras is not needed here.
 
     -- --------
     -- Formatters (these are still normal builtins)
@@ -78,7 +57,7 @@ return {
     null_ls.setup({
       sources = sources,
       on_attach = function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
+        if client:supports_method("textDocument/formatting") then
           vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
             callback = function()

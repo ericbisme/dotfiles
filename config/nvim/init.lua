@@ -24,7 +24,7 @@ vim.opt.foldlevelstart = 5
 
 vim.diagnostic.config({
   float = {
-    source = "always",
+    source = true,
     format = function(diagnostic)
       return string.format("%s [%s]", diagnostic.message, diagnostic.code or diagnostic.source)
     end,
