@@ -77,9 +77,12 @@ return {
       vim.lsp.config('bashls', {})
 
       -- ESLint
+      -- Do NOT set experimental.useFlatConfig: it forces flat-config mode
+      -- everywhere, so the 14 rojoserve repos still on .eslintrc* fail every
+      -- lint request with "Could not find config file". Left unset, the server
+      -- detects the format per project. (That flag grew a 1.7GB lsp.log.)
       vim.lsp.config('eslint', {
         settings = {
-          experimental = { useFlatConfig = true },
           format = false, -- since prettier owns formatting
         },
       })
