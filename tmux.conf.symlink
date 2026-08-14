@@ -118,8 +118,23 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-yank'
 
 set -g @yank_action 'copy-pipe-no-clear'
-bind -T copy-mode    C-c send -X copy-pipe-no-clear "xsel -i --clipboard"
-bind -T copy-mode-vi C-c send -X copy-pipe-no-clear "xsel -i --clipboard"
+
+# C-c in copy mode copies to the system clipboard. The tool differs per
+# platform, so bind whichever one is actually present - a hardcoded xsel is a
+# silent no-op on macOS. These run in order and the last match wins, so on a
+# Fedora Wayland session that has both xsel and wl-copy, wl-copy is bound.
+if-shell 'command -v pbcopy >/dev/null 2>&1' {
+    bind -T copy-mode    C-c send -X copy-pipe-no-clear "pbcopy"
+    bind -T copy-mode-vi C-c send -X copy-pipe-no-clear "pbcopy"
+}
+if-shell 'command -v xsel >/dev/null 2>&1' {
+    bind -T copy-mode    C-c send -X copy-pipe-no-clear "xsel -i --clipboard"
+    bind -T copy-mode-vi C-c send -X copy-pipe-no-clear "xsel -i --clipboard"
+}
+if-shell 'command -v wl-copy >/dev/null 2>&1' {
+    bind -T copy-mode    C-c send -X copy-pipe-no-clear "wl-copy"
+    bind -T copy-mode-vi C-c send -X copy-pipe-no-clear "wl-copy"
+}
 # Other examples:
 # set -g @plugin 'github_username/plugin_name'
 # set -g @plugin 'github_username/plugin_name#branch'
