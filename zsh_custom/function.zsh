@@ -49,3 +49,24 @@ docker_lambda_env() {
   echo AWS_SECRET_ACCESS_KEY=$(aws configure --profile $1 get aws_secret_access_key)
   echo AWS_SESSION_TOKEN=$(aws configure --profile $1 get aws_session_token)
 }
+
+ssm() {
+  if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied, pass in a hostname from the AWS environment"
+    return 1
+  fi
+
+  if ! aws sts get-caller-identity; then
+    echo "Log in to AWS with \`aws sso login\`"
+    return 1
+  fi
+
+  aws ssm start-session --target \
+    $( \
+      aws ec2 describe-instances \
+      --filters Name='tag:Name',Values="${1}" \
+      --query 'Reservations[*].Instances[*].InstanceId' \
+      --output text \
+    )
+}
