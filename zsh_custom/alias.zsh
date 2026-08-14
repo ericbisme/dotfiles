@@ -12,10 +12,14 @@ alias wol_coreos='sudo ether-wake 00:30:48:94:c6:32'
 #alias kc='kubectl'
 #alias kcga='kubectl get all'
 #alias kgn='kubectl'
+alias kgn='kubectl get nodes --label-columns beta.kubernetes.io/arch,failure-domain.beta.kubernetes.io/zone --sort-by=.metadata.creationTimestamp'
+
+# Docker / Podman
+alias docker=podman
 
 alias vi=nvim
 alias tg=terragrunt
 alias tf=terraform
 
 # AWS
-alias aws-table="aws ec2 describe-instances --query 'Reservations[].Instances[].[ [Tags[?Key=='Name'].Value][0][0],PrivateIpAddress,InstanceId,State.Name,Placement.AvailabilityZone ]' --output table"
+alias aws-table="aws ec2 describe-instances --query 'Reservations[*].Instances[*].[[Tags[?Key==\`Name\`].Value][0][0],InstanceId,PrivateIpAddress,State.Name] | [] | sort_by(@, &[0])' --output table"
