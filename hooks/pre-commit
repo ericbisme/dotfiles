@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+# Lint staged files before committing. Enabled via core.hooksPath=hooks, which
+# bootstrap.sh sets, so this file is versioned and needs no install step.
+#
+# bash, not sh: this reads NUL-delimited filenames, which needs `read -d ''`.
+# bash is present by default on both macOS and Fedora.
+#
+# Files are checked AS STAGED rather than as they sit in the working tree, so a
+# partially-staged commit is linted honestly.
+#
+# Bypass with `git commit --no-verify` when you genuinely need to.
+set -euo pipefail
+
+fail=0
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+
+staged() {
+  git diff --cached --name-only --diff-filter=ACM -z
+}
+
+# Materialise a staged file so we lint the staged content, not the worktree.
+# Note: process substitution, not $(staged) - command substitution strips the
+# NUL bytes that separate the filenames.
+stage_to() {
+  local dest
+  dest="$tmp/${1//\//_}"
+  git show ":$1" >"$dest" 2>/dev/null || return 1
+  printf '%s' "$dest"
+}
+
+report() { # report <label> <file> <output> <tmpcopy>
+  printf '%s: %s\n' "$1" "$2" >&2
+  printf '%s\n' "$3" | sed "s|$4|$2|g" >&2
+  fail=1
+}
+
+# ------------------------------------------------------------------- shell
+if command -v shellcheck >/dev/null 2>&1; then
+  while IFS= read -r -d '' f; do
+    case "$f" in
+      *.sh | bin/* | hooks/*) ;;
+      *) continue ;;
+    esac
+    copy=$(stage_to "$f") || continue
+    # Respect each script's own shebang rather than forcing a dialect.
+    if ! out=$(shellcheck --format=gcc "$copy" 2>&1); then
+      report shellcheck "$f" "$out" "$copy"
+    fi
+  done < <(staged)
+else
+  printf 'pre-commit: shellcheck not installed - shell scripts NOT linted\n' >&2
+fi
+
+# --------------------------------------------------------------------- lua
+# Syntax only. Prefer luac/luajit, then fall back to nvim, which is certain to
+# be present given what this repo configures. loadfile() parses without running.
+lua_check() {
+  if command -v luac >/dev/null 2>&1; then
+    luac -p "$1" 2>&1
+  elif command -v luajit >/dev/null 2>&1; then
+    luajit -bl "$1" /dev/null 2>&1
+  else
+    LUA_CHECK_FILE=$1 nvim --headless --clean \
+      -c "lua local fn, err = loadfile(vim.env.LUA_CHECK_FILE); if not fn then io.stderr:write(err .. '\n'); vim.cmd('cquit 1') end" \
+      -c 'quit' 2>&1
+  fi
+}
+
+if command -v luac >/dev/null 2>&1 ||
+  command -v luajit >/dev/null 2>&1 ||
+  command -v nvim >/dev/null 2>&1; then
+  while IFS= read -r -d '' f; do
+    [[ $f == *.lua ]] || continue
+    copy=$(stage_to "$f") || continue
+    if ! out=$(lua_check "$copy"); then
+      report 'lua syntax' "$f" "$out" "$copy"
+    fi
+  done < <(staged)
+else
+  printf 'pre-commit: no lua checker found - lua files NOT linted\n' >&2
+fi
+
+# -------------------------------------------------------- accidental secrets
+while IFS= read -r -d '' f; do
+  copy=$(stage_to "$f") || continue
+  if grep -qE 'BEGIN (OPENSSH|RSA|EC|DSA|PGP) PRIVATE KEY|AKIA[0-9A-Z]{16}' "$copy" 2>/dev/null; then
+    printf 'pre-commit: %s looks like it contains a private key or AWS access key\n' "$f" >&2
+    fail=1
+  fi
+done < <(staged)
+
+if [ "$fail" -ne 0 ]; then
+  printf '\npre-commit: checks failed. Fix them, or commit with --no-verify.\n' >&2
+  exit 1
+fi
