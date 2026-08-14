@@ -118,6 +118,19 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(rbenv init - zsh)"
 
+# History: effectively unlimited, de-duplicated.
+# Must stay below `source $ZSH/oh-my-zsh.sh` — omz's lib/history.zsh pins
+# HISTSIZE=50000 / SAVEHIST=10000 and would otherwise be sourced after this.
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000000              # events held in the running shell
+SAVEHIST=1000000000              # events written to $HISTFILE
+
+setopt HIST_IGNORE_ALL_DUPS      # re-running a command moves it up, no second copy
+setopt HIST_SAVE_NO_DUPS         # never write a duplicate to the history file
+setopt HIST_FIND_NO_DUPS         # ctrl-r offers each command once
+setopt HIST_REDUCE_BLANKS        # normalize whitespace before recording
+unsetopt HIST_EXPIRE_DUPS_FIRST  # omz sets this; nothing expires anymore
+
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/ebolinger/.rd/bin:$PATH"
