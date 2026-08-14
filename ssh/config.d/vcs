@@ -1,5 +1,6 @@
-Host *.github.com
-    IdentityFile ~/.ssh/github.key
+Host github.com *.github.com
+    IdentityFile ~/.ssh/github
+    IdentitiesOnly yes
 
 Host *.gitlab.com
     IdentityFile ~/.ssh/gitlab.key

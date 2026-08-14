@@ -15,7 +15,7 @@ set -eu
 # Must match the `zstyle :omz:plugins:ssh-agent identities` list in
 # zshrc.symlink - if you add a key here, add it there too, or the agent will
 # not load it.
-KEYS='modo-github modo-servers'
+KEYS='github modo-servers'
 
 COMMENT=${GENSSH_COMMENT:-"$(id -un)@$(hostname -s)"}
 

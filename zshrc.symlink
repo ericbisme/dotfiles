@@ -2,7 +2,7 @@
 # * Add SSH Keys to ssh-agent
 # * Confgure Node version manager to look for version pinning file, .nvmrc in project directories
 zstyle :omz:plugins:ssh-agent ssh-add-args --apple-use-keychain --apple-load-keychain
-zstyle :omz:plugins:ssh-agent identities modo-github modo-servers
+zstyle :omz:plugins:ssh-agent identities github modo-servers
 export NVM_AUTO_USE=true
 export SHELL_SESSIONS_DISABLE=1
 # END ANSIBLE MANAGED BLOCK
