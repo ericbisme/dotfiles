@@ -1,21 +1,45 @@
-#!/bin/bash
+#!/bin/sh
+# Generate the SSH keys these dotfiles expect, if they do not already exist.
+#
+# Idempotent: existing keys are never touched or overwritten.
+#
+# ed25519, not RSA: shorter, faster, and the current default. RSA-2048 (what
+# this script used to generate) is below what GitHub and most hosts now want.
+#
+# Keys are created without a passphrase because they are loaded by the
+# ssh-agent plugin at shell start (see zshrc.symlink) and, on macOS, held in
+# the login keychain. If you would rather have a passphrase, run with
+# GENSSH_PASSPHRASE=ask and you will be prompted per key.
+set -eu
 
-services=(
-cu
-gitlab
-github
-bitbucket
-ericbismenet
-rojoserve
-)
+# Must match the `zstyle :omz:plugins:ssh-agent identities` list in
+# zshrc.symlink - if you add a key here, add it there too, or the agent will
+# not load it.
+KEYS='modo-github modo-servers'
 
-for i in "${services[@]}"
-do
-  if [ ! -f "${HOME}/.ssh/${i}" ]; then
-    ssh-keygen -b 2048 -t rsa -f "${HOME}/.ssh/${i}" -q -P ""
-  else
-    echo "${HOME}/.ssh/${i} Already exists"
+COMMENT=${GENSSH_COMMENT:-"$(id -un)@$(hostname -s)"}
+
+mkdir -p "$HOME/.ssh"
+chmod 700 "$HOME/.ssh"
+
+for name in $KEYS; do
+  path="$HOME/.ssh/$name"
+
+  if [ -e "$path" ]; then
+    printf '  exists   %s\n' "$path"
+    continue
   fi
+
+  if [ "${GENSSH_PASSPHRASE:-}" = ask ]; then
+    ssh-keygen -t ed25519 -f "$path" -C "$COMMENT"
+  else
+    ssh-keygen -t ed25519 -f "$path" -C "$COMMENT" -q -N ''
+  fi
+
+  printf '  created  %s\n' "$path"
+  printf '           public key: %s\n' "$(cat "$path.pub")"
 done
 
-
+printf '\nAdd the public keys above to the relevant hosts.\n'
+printf 'On macOS, load into the keychain with:\n'
+printf '  ssh-add --apple-use-keychain ~/.ssh/<name>\n'
