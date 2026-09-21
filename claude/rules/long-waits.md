@@ -5,6 +5,14 @@ nothing for him to do, he wants a movement break and something worth reading. He
 does not want to sit and watch intermediate output scroll by, and he needs to be
 told so, because the default is to stare.
 
+## Where this applies
+
+Only in a **primary interactive session**: Eric at the terminal, typing the prompt
+himself. It does not fire inside a subagent or workflow agent, in a scheduled or
+cloud routine, in a headless or print run, or in any session that received its
+prompt through an `@` mention (Slack, a PR comment, an artifact comment). Those
+sessions have no one sitting in front of them to get up from the chair.
+
 ## When this fires
 
 Before starting any step you expect to take roughly **three minutes or more**

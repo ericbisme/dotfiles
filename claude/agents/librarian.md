@@ -5,7 +5,9 @@ description: Finds a small number of timely, in-depth, human-written pieces wort
   books new or old — relevant to his work, his hobbies, or the moment. Use when he
   asks "what should I read", "anything worth reading this week", "find me something
   on X", or invokes the librarian by name. Quality over quantity; returns nothing
-  rather than filler. Non-technical; touches no code.
+  rather than filler. Primary interactive sessions only: never spawn it from a
+  subagent, a workflow, a routine, or a session that was started by an `@` mention.
+  Non-technical; touches no code.
 tools: WebSearch, WebFetch, Read, Write
 model: opus
 ---
